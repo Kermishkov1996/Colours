@@ -36,22 +36,29 @@ function generateRandomColor() {
 	return '#' + color
 }
 
-function setRandomColors() {
-	const colors = []
+function setRandomColors(isInitial) {
+	const colors = isInitial ? getColorsFromHash() : []
 
-	cols.forEach(col =>  {
+	cols.forEach((col, index) =>  {
 		const isLocked = col.querySelector('i').classList.contains('fa-lock')
 		const text = col.querySelector('h2')
 		const button = col.querySelector('button')
-		// const color = generateRandomColor() //собственная генерация цвета
-		const color = chroma.random() //библиотека chroma.js для смены цвета
-
+		
 		if (isLocked) {
 			colors.push(text.textContent)
 			return
 		}
+		
+		// const color = generateRandomColor() //собственная генерация цвета
+		const color = isInitial 
+			? colors[index] 
+				? colors[index] 
+				: chroma.random() 
+			: chroma.random() //библиотека chroma.js для смены цвета
 
-		colors.push(color)
+		if (!isInitial) {
+			colors.push(color)
+		}
 
 		text.textContent = color
 		col.style.background = color
@@ -84,4 +91,4 @@ function getColorsFromHash() {
 	return []
 }
 
-setRandomColors()
+setRandomColors(true)
