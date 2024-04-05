@@ -17,8 +17,14 @@ document.addEventListener('click', (event) => {
 
 		node.classList.toggle('fa-lock-open')
 		node.classList.toggle('fa-lock')
+	} else if (type === 'copy') {
+		copyToClickBoard(event.target.textContent)
 	}
 })
+
+function copyToClickBoard(text) {
+	return navigator.clipboard.writeText(text)
+}
 
 function generateRandomColor() {
 	const hexCodes = '0123456789ABCDEF'
@@ -41,7 +47,7 @@ function setRandomColors() {
 		if (isLocked) {
 			return
 		}
-		
+
 		text.textContent = color
 		col.style.background = color
 
