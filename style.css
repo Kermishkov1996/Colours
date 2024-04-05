@@ -28,6 +28,7 @@ body{
 .col button{
 	padding: 10px;
 	border: none;
+	outline: none;
 	border-radius: 10px;
 	background: transparent;
 	font-size: 1.5rem;
