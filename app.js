@@ -32,11 +32,16 @@ function generateRandomColor() {
 
 function setRandomColors() {
 	cols.forEach(col =>  {
+		const isLocked = col.querySelector('i').classList.contains('fa-lock')
 		const text = col.querySelector('h2')
 		const button = col.querySelector('button')
 		// const color = generateRandomColor() //собственная генерация цвета
 		const color = chroma.random() //библиотека chroma.js для смены цвета
 
+		if (isLocked) {
+			return
+		}
+		
 		text.textContent = color
 		col.style.background = color
 
